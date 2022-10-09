@@ -1,4 +1,9 @@
+import {buscarHerore} from './js/callbaks';
 import './styles.css';
 
-console.log('Hola mundo');
+const heroeId = 'capi';
+
+buscarHerore (heroeId, ( heroe ) => {
+    console.log( heroe )
+})
 

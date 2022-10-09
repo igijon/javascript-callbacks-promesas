@@ -25,6 +25,18 @@ export const buscarHeroe = (id) => {
     }); 
 }
 
+//async transforma mi función en una función asíncrona... sin hacer el 
+//return promise
+export const buscarHeroeAsync = async(id) => {
+    const heroe = heroes[id];
+
+    if( heroe ) {
+        return heroe; //Se corresponde con el resolve
+    } else {
+        throw Error(`No existe un héroe con el id ${id}`);
+    }
+}
+
 const promesaLenta = new Promise((resolve, reject) => {
     setTimeout(() => resolve('Promesa lenta'),2000);
 });

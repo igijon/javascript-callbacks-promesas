@@ -1,10 +1,8 @@
-import { promesaLenta, promesaRapida, promesaMedia } from './js/promesas';
+import { buscarHeroe, buscarHeroeAsync } from './js/promesas';
 
-// promesaLenta.then( console.log );
-// promesaMedia.then( console.log );
-// promesaRapida.then( console.log );
-
-//Se intentan ejecutar todas las promesas y la única que se muestra es la más
-//rápida. Si alguna da un error, se ignora.
-Promise.race([promesaLenta, promesaMedia, promesaRapida])
-    .then( console.log);
+buscarHeroe('capi2')
+    .then(console.log)
+    .catch(console.warn);
+buscarHeroeAsync('capi2')
+    .then(console.log)
+    .catch(console.warn);

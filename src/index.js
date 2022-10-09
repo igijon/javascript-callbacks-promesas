@@ -3,17 +3,19 @@ import {buscarHeroe} from './js/promesas';
 import './styles.css';
 
 const heroeId1 = 'capi';
-const heroeId2 = 'spiderman';
+const heroeId2 = 'iron';
 
-//Callback hell
-// buscarHerore (heroeId1, ( err, heroe ) => {
-//     if( err ) { return console.error( err );}
-//     buscarHerore(heroeId2, (err, heroe2) => {
-//         if (err) { return console.error(err); }
-//         console.log(`Enviando a ${ heroe.nombre } y ${ heroe2.nombre } a la misión`);
+
+// buscarHeroe( heroeId1 ).then( heroe => {
+//     buscarHeroe(heroeId2).then( heroe2 => {
+//         console.log(`Enviando a ${heroe.nombre} y ${heroe2.nombre} a la misión`);
 //     });
 // })
 
-buscarHeroe( heroeId1 ).then( heroe => {
-    console.log(`Enviando a ${heroe.nombre} a la misión`);
-})
+//No se ejecuta el código hasta que no se resuelve todo lo que está dentro
+Promise.all([buscarHeroe(heroeId1), buscarHeroe(heroeId2)])
+    .then( ([heroe1, heroe2]) => {
+        console.log(`Enviando a ${heroe1.nombre} y ${heroe2.nombre} a la misión`);
+    });
+
+console.log('Fin del programa');

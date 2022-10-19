@@ -1,4 +1,4 @@
-import { buscarHeroe } from './promesas'
+import { buscarHeroe, buscarHeroeAsync } from './promesas'
 
 const heroesIds = ['capi', 'iron', 'spider'];
 
@@ -14,4 +14,14 @@ export const obtenerHeroesArr = async () => {
     //Vamos a hacerlo más elegante
     //Se resuelve desdel el parénteis más interno hacia fuera
     return await Promise.all(heroesIds.map( buscarHeroe ));
+}
+
+export const obtenerHeroesAwait = async (id) => {
+    try {
+        const heroe = await buscarHeroeAsync( id );
+        return heroe;
+    }catch(err){
+        //Si aquí pongo un return, irá al then de la función que llama a esta
+        throw err;
+    }       
 }

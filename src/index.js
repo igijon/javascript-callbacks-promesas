@@ -1,3 +1,3 @@
-import { heroesCiclo } from './js/await';
+import { heroeIfAwait } from './js/await';
 
-heroesCiclo();
+heroeIfAwait('iron');

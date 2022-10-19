@@ -1,6 +1,9 @@
 import { buscarHeroe, buscarHeroeAsync } from './promesas'
 
 const heroesIds = ['capi', 'iron', 'spider'];
+// ⁄const heroesPromesas = heroesIds.map( id => buscarHeroe(id));
+const heroesPromesas = heroesIds.map( buscarHeroe ); //Array de promesas
+
 
 export const obtenerHeroesArr = async () => {
     // const heroesArr = [];
@@ -24,4 +27,17 @@ export const obtenerHeroesAwait = async (id) => {
         //Si aquí pongo un return, irá al then de la función que llama a esta
         throw err;
     }       
+}
+
+export const heroesCiclo = async() => {
+    console.time('HeroesCiclo');
+
+    // const heroes = await Promise.all(heroesPromesas);
+    // heroes.forEach( heroe => console.log(heroe) );
+
+    for await (const heroe of heroesPromesas ) {
+        console.log(heroe);
+    }
+
+    console.timeEnd('HeroesCiclo');
 }

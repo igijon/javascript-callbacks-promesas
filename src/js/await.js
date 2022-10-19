@@ -3,12 +3,15 @@ import { buscarHeroe } from './promesas'
 const heroesIds = ['capi', 'iron', 'spider'];
 
 export const obtenerHeroesArr = async () => {
-    const heroesArr = [];
-    for (const id of heroesIds) {
-        const heroe = await buscarHeroe(id); //Await debe insertarse dentro de una función asíncrona
-        //Cuando se resuelve la promesa, el resultado que devuelve lo almacena en heroe. Await espera que la promesa se resuelva. 
-        heroesArr.push(heroe); //Ahora tengo un array con promesas
-    }
+    // const heroesArr = [];
+    // //Si quiero hacer promesas consecutivamente no se recomienda hacerlo así dentro de un ciclo for
+    // for (const id of heroesIds) {
+    //      heroesArr.push(buscarHeroe(id)); //Esto es un array de promesas
+    // }
 
-    return heroesArr;
+    // return await Promise.all(heroesArr); //Evitamos usar await fuera del ciclo for
+
+    //Vamos a hacerlo más elegante
+    //Se resuelve desdel el parénteis más interno hacia fuera
+    return await Promise.all(heroesIds.map( buscarHeroe ));
 }
